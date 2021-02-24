@@ -12,7 +12,6 @@ router.post('/charge', async (req, res) => {
     try {
         await newCash.updateQuantity(details, 'CHARGE')
     } catch (error) {
-        console.log(error)
         return res.status(500).json({ error: error.message })
     }
     let totalAmount = 0
@@ -36,7 +35,7 @@ router.post('/empty', async (req, res) => {
     try {
         cashState = await newCash.getState()
         if (cashState.balance === 0)
-            return res.status(500).json({ message: 'Cash register is already empty' })
+            return res.status(200).json({ message: 'Cash register is already empty' })
         await newCash.empty()
     } catch (error) {
         return res.status(500).json({ error: error.message })
@@ -52,17 +51,15 @@ router.post('/empty', async (req, res) => {
     res.status(200).json({ message: 'Success' })
 })
 
-router.get('/state', async (req, res) => {
+router.get('/status', async (req, res) => {
     let state
     try {
         const newCash = new Cash({})
         state = await newCash.getState()
-        if (state.length === 0)
-            return res.status(200).json({ message: 'The cash register is empty' })
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
-    res.status(200).json({ state })
+    res.status(200).json({ ...state })
 })
 
 router.post('/pay', async (req, res) => {
