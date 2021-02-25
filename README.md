@@ -26,7 +26,7 @@ npm test
 
 ## Routes
 
-- POST `/transaction/charge` which charge a list of bills or coins into the cash register.
+- **POST `/transaction/charge`** which charge a list of bills or coins into the cash register.
 
 An object with the `details` param must be passed:
 
@@ -61,7 +61,7 @@ Example failed response:
 
 ***
 
-- POST `/transaction/empty` which empty the cash register.
+- **POST `/transaction/empty`** which empty the cash register.
 
 Success response with `status 200`:
 
@@ -73,7 +73,7 @@ Success response with `status 200`:
 
 ***
 
-- POST `/transaction/status` which returns the cash register status.
+- **POST `/transaction/status`** which returns the cash register status.
 
 Example success response with `status 200`:
 
@@ -96,7 +96,7 @@ Example success response with `status 200`:
 
 ***
 
-- POST `/transaction/pay` which makes a payment.
+- **POST `/transaction/pay`** which makes a payment.
 
 An object with the following parameters must be passed:
 
@@ -131,7 +131,7 @@ Example failed response with `status 400` with an error:
 ***
 
 
-- POST `/transaction/log` which returns all the transactions.
+- **POST `/transaction/log`** which returns all the transactions.
 
 Example success response with `status 200`:
 
@@ -158,7 +158,7 @@ Example success response with `status 200`:
 ***
 
 
-- POST `/transaction/log-by-date` which returns all the transactions up to a given date.
+- **POST `/transaction/log-by-date`** which returns all the transactions up to a given date.
 
 An object with the following parameters must be passed:
 
