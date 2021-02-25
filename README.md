@@ -7,7 +7,7 @@ Run
 ```sh
 npm install
 ```
-Create a `.env` file with the this keys:
+Create a `.env` file with this key:
 ```
 MONGO_URL=yourMongoUrl
 ```
@@ -98,7 +98,7 @@ Example success response with `status 200`:
 
 An object with the following parameters must be passed:
 
-`amount`: Amount of the payment
+`amount`: Amount of the payment.
 
 `cash`: List of bills or coins with `denomination` and `quantity`.
 
@@ -156,7 +156,7 @@ Example success response with `status 200`:
 ***
 
 
-- POST `/transaction/log-by-date` which returns all the transactions by date.
+- POST `/transaction/log-by-date` which returns all the transactions up to a given date.
 
 An object with the following parameters must be passed:
 
