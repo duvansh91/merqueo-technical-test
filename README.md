@@ -1,6 +1,8 @@
 # Merqueo technical test
 
-This `Node` API was created to works as a cash register. 
+This API was created with:
+- Node.js (Express.js).
+- MongoDB. 
 
 # To run this project:
 Run
