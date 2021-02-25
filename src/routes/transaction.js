@@ -104,6 +104,10 @@ router.get('/log', async (req, res) => {
 
 router.get('/log-by-date', async (req, res) => {
     const { date, hour } = req.body
+    if (!date)
+        return res.status(400).json({ error: 'Date must be provided' })
+    if (!hour)
+        return res.status(400).json({ error: 'Hour must be provided' })
     const newTransaction = new Transaction({})
     const log = await newTransaction.getByDate(date, hour)
     res.status(200).json(log)

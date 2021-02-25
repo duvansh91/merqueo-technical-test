@@ -6,12 +6,12 @@ const db = require('../utils/db')
 class Transaction {
     /**
      * Create a transaction.
-     * @param {Date} create_at - Transaction date.
+     * @param {Date} created_at - Transaction date.
      * @param {number} amount - Transaction amount.
      * @param {string} type - Transaction type.
      */
     constructor(params) {
-        this.create_at = params.date
+        this.created_at = params.date
         this.amount = params.amount
         this.type = params.type
     }
@@ -26,7 +26,7 @@ class Transaction {
             .collection('transactions')
             .insertOne(
                 {
-                    create_at: this.create_at,
+                    created_at: this.created_at,
                     amount: this.amount,
                     type: this.type
                 }
@@ -45,13 +45,13 @@ class Transaction {
                 {
                     $project: {
                         _id: 0,
-                        date: { $dateToString: { format: "%d/%m/%Y", date: "$create_at" } },
-                        hour: { $hour: "$create_at" },
+                        date: { $dateToString: { format: "%d/%m/%Y", date: "$created_at" } },
+                        hour: { $hour: "$created_at" },
                         amount: 1,
                         type: 1,
                     }
                 },
-                { $sort: { create_at: -1 } }
+                { $sort: { created_at: -1 } }
             ])
             .toArray()
     }
@@ -70,8 +70,8 @@ class Transaction {
             .aggregate([
                 {
                     $project: {
-                        date: { $dateToString: { format: "%d/%m/%Y", date: "$create_at" } },
-                        hour: { $hour: "$create_at" },
+                        date: { $dateToString: { format: "%d/%m/%Y", date: "$created_at" } },
+                        hour: { $hour: "$created_at" },
                         amount: 1,
                         type: 1
                     }

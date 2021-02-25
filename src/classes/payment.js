@@ -25,7 +25,7 @@ class Payment {
         let totalIncomeCash = 0
         this.cash.forEach(value => totalIncomeCash += value.denomination * value.quantity)
         const change = totalIncomeCash - this.amount
-        if (cashState.total < change) throw new Error('Insufficient cash in register')
+        if (cashState.balance < change) throw new Error('Insufficient cash in register')
         if (totalIncomeCash < this.amount) throw new Error('Insufficient cash')
         const changeToReturn = []
         let changeTemp = change
