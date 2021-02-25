@@ -100,7 +100,7 @@ router.post('/pay', async (req, res) => {
 router.get('/log', async (req, res) => {
   const newTransaction = new Transaction({})
   const log = await newTransaction.getAll()
-  res.status(200).json(log)
+  res.status(200).json({ transactions: log })
 })
 
 router.get('/log-by-date', async (req, res) => {

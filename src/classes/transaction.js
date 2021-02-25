@@ -1,3 +1,4 @@
+const moment = require('moment')
 const db = require('../utils/db')
 
 /**
@@ -57,12 +58,13 @@ class Transaction {
   }
 
   /**
-  *  Get all transactions in db by date.
+  *  Get all transactions in db up to a date.
   * @param {Date} date - Transaction date (DD/MM/YYYY).
   * @param {number} hour - Transaction hour in 24H format.
   * @returns {Promise} Promise from db.
   */
   async getByDate(date, hour) {
+    const dateObject = moment(date, 'DD/MM/YYYY')
     const hourInt = parseInt(hour, 10)
     const transactions = await db
       .get()
@@ -72,19 +74,21 @@ class Transaction {
           $project: {
             date: { $dateToString: { format: '%d/%m/%Y', date: '$created_at' } },
             hour: { $hour: '$created_at' },
+            created_at: 1,
             amount: 1,
             type: 1
           }
         },
         {
           $match: {
-            date,
-            hour: hourInt,
-          }
+            created_at: { $lte: new Date(dateObject) },
+            hour: { $lte: hourInt }
+          },
         },
         {
           $project: {
             _id: 0,
+            created_at: 0
           }
         }
       ])

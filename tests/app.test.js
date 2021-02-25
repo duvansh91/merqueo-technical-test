@@ -251,7 +251,7 @@ describe('GET /transaction/log', () => {
       }
     ])
     const response = await request(app).get('/transaction/log')
-    expect(response.body).toEqual(
+    expect(response.body.transactions).toEqual(
       expect.arrayContaining([
         {
           amount: -10000,
@@ -275,25 +275,25 @@ describe('GET /transaction/log-by-date', () => {
   it('Should return the transactions log by date', async () => {
     await db.get().collection('transactions').insertMany([
       {
-        created_at: new Date('2021-02-24T18:05:05.588+00:00'),
+        created_at: new Date('2021-02-23T18:05:05.588+00:00'),
         amount: 20000,
         type: 'PAYMENT',
       },
       {
-        created_at: new Date('2021-02-24T18:05:05.588+00:00'),
+        created_at: new Date('2021-02-23T18:05:05.588+00:00'),
         amount: -10000,
         type: 'CHANGE',
       },
       {
-        created_at: new Date('2021-02-23T18:05:05.588+00:00'),
+        created_at: new Date('2021-02-27T18:05:05.588+00:00'),
         amount: 30000,
         type: 'PAYMENT',
       }
     ])
     const response = await request(app).get('/transaction/log-by-date').send(
       {
-        date: '24/02/2021',
-        hour: '18'
+        date: '25/02/2021',
+        hour: '22'
       }
     )
     expect(response.body.balance).toBe(10000)
@@ -302,13 +302,13 @@ describe('GET /transaction/log-by-date', () => {
         {
           amount: 20000,
           type: 'PAYMENT',
-          date: '24/02/2021',
+          date: '23/02/2021',
           hour: 18
         },
         {
           amount: -10000,
           type: 'CHANGE',
-          date: '24/02/2021',
+          date: '23/02/2021',
           hour: 18
         }
       ]),
