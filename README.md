@@ -73,7 +73,7 @@ Success response with `status 200`:
 
 ***
 
-- **POST `/transaction/status`** which returns the cash register status.
+- **GET `/transaction/status`** which returns the cash register status.
 
 Example success response with `status 200`:
 
@@ -131,7 +131,7 @@ Example failed response with `status 400` with an error:
 ***
 
 
-- **POST `/transaction/log`** which returns all the transactions.
+- **GET `/transaction/log`** which returns all the transactions.
 
 Example success response with `status 200`:
 
@@ -158,7 +158,7 @@ Example success response with `status 200`:
 ***
 
 
-- **POST `/transaction/log-by-date`** which returns all the transactions up to a given date.
+- **GET `/transaction/log-by-date`** which returns all the transactions up to a given date.
 
 An object with the following parameters must be passed:
 
