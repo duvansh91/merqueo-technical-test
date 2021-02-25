@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true,
+        "jest": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 12
+    },
+    "rules": {
+        "semi": [
+            "error",
+            "never"
+        ],
+        "class-methods-use-this": "off",
+        "nonblock-statement-body-position": "off",
+        "curly": "off",
+        "no-mixed-operators": "off",
+        "no-loop-func": "off",
+        "comma-dangle": "off",
+        "no-underscore-dangle": "off"
+    }
+}
